@@ -29,3 +29,31 @@ contract SimpleStorageTest is Test {
         assertEq(simple.nameToFavoriteNumber("Alice"), 10);
     }
 }
+
+/**
+ * 
+ * ======== Running Tests and Deployment Commands ========
+ * 
+ * ----- To run the tests, use the command -----
+ * forge test --contracts test/SimpleStorage.t.sol
+ * 
+ * ------ To Deploy the contract, use the command ------
+ * forge script script/DeploySimpleStorage.s.sol --broadcast
+ * 
+ * ------ Deploy using PRIVATE_KEY and RPC_URL set in the .env file ------
+ * forge script script/DeploySimpleStorage.s.sol --broadcast --private-key $PRIVATE_KEY --rpc-url $RPC_URL
+ * 
+ * ------ Securing PRIVATE_Key using Cast Keystore command ----------
+ * cast wallet import <Private_Key_Name> --interactive (Enter Private Key:) then (Enter Password:)
+ * 
+ * ------ Deploy using Cast Keystore ------
+ * forge script script/DeploySimpleStorage.s.sol --broadcast --rpc-url $RPC_URL --account <Private_Key_Name> --sender <Private_Key Sender Address>
+ * 
+ * 
+ * ========= Broadcast Folder =========
+ * It store the deployment and transaction details in the broadcast folder.
+ * After running the deploy script, check the broadcast/<Contract_Name> folder for details.
+ * ====================================
+ * 
+ * 
+ */
