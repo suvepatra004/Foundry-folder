@@ -13,6 +13,11 @@ contract SimpleStorage {
 
     mapping(string => uint256) public nameToFavoriteNumber;
 
+    // constructor() {
+    //     anArray.push(1);
+    //     anArray.push(2);
+    // }
+
     function store(uint256 _favoriteNumber) public {
         myFavoriteNumber = _favoriteNumber;
     }
