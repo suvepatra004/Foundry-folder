@@ -6,6 +6,13 @@ import {AggregatorV3Interface} from "@chainlink/src/v0.8/shared/interfaces/Aggre
 // Why is this a library and not abstract?
 // Why not an interface?
 
+// 
+/**
+ * @title PriceConverter
+ * @author Suvendu
+ * @notice For converting ETH to USD
+ * @dev This converts the ETH amount to USD amount using Chainlink Price Feeds
+ */
 
 contract PriceConverter {
     // We could make this public, but then we'd have to deploy it

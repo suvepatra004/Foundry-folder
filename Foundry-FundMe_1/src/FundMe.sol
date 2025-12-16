@@ -7,6 +7,13 @@ import {AggregatorV3Interface} from "@chainlink/src/v0.8/shared/interfaces/Aggre
 
 error NotOwner();
 
+/**
+ * @title Fund Me
+ * @author Suvendu
+ * @notice For creating a sample funding contract
+ * @dev This implements price feeds as our library
+ */
+
 contract FundMe {
 
     // using PriceConverter for uint256;
