@@ -3,7 +3,7 @@ pragma solidity ^0.8.21;
 
 // Note: The AggregatorV3Interface might be at a different location than what was in the video!
 import {AggregatorV3Interface} from "@chainlink/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
-// import {PriceConverter} from "./PriceConverter.sol";
+import {PriceConverter} from "./PriceConverter.sol";
 
 error NotOwner();
 
@@ -22,11 +22,13 @@ contract FundMe {
     address[] public funders;
 
     // Could we make this constant?  /* hint: no! We should make it immutable! */
-    address public /* immutable */ iOwner;
-    uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
+    address public immutable iOwner;
+    uint256 public constant MINIMUM_USD = 5e18;
+    AggregatorV3Interface private s_PriceFeed;
 
-    constructor() {
+    constructor(address priceFeed) {
         iOwner = msg.sender;
+        s_PriceFeed = AggregatorV3Interface(priceFeed);
     }
 
     // uint256 public myValue = 1;
@@ -49,13 +51,17 @@ contract FundMe {
         */
 
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
+        // require(
+        //     msg.value.getConversionRate(s_PriceFeed) >= MINIMUM_USD,
+        //     "Need to spend more ETH"
+        // );
         addressToAmountFunded[msg.sender] += msg.value;
         funders.push(msg.sender);
     }
 
+    // Get the version of the price feed
     function getVersion() public view returns (uint256) {
-        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
-        return priceFeed.version();
+        return s_PriceFeed.version();
     }
 
     modifier onlyOwner() {
